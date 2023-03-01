@@ -226,6 +226,55 @@ void laserOdometryHandler(const nav_msgs::Odometry::ConstPtr &laserOdometry)
 	odomAftMapped.pose.pose.position.y = t_w_curr.y();
 	odomAftMapped.pose.pose.position.z = t_w_curr.z();
 	pubOdomAftMappedHighFrec.publish(odomAftMapped);
+
+	// ****************************Output trajectory******************************
+	std::ofstream pose1("/root/catkin_ws/traj.txt", std::ios::app);
+	pose1.setf(std::ios::scientific, std::ios::floatfield);
+	pose1.precision(8);
+	
+	static double timeStart = odometryBuf.front()-> header.stamp.toSec();
+	auto T1 = ros::Time().fromSec(timeStart);
+	// pose1 << odomAftMapped.header.stamp - T1  << " "
+	pose1 << odomAftMapped.header.stamp << " "
+			<< odomAftMapped.pose.pose.position.x << " "
+			<< odomAftMapped.pose.pose.position.y << " "
+			<< odomAftMapped.pose.pose.position.z << " "
+			<< odomAftMapped.pose.pose.orientation.x << " "
+			<< odomAftMapped.pose.pose.orientation.y << " "
+			<< odomAftMapped.pose.pose.orientation.z << " "
+			<< odomAftMapped.pose.pose.orientation.w << std::endl;
+	pose1.close();
+
+
+	// //记得改为你的路径
+	// std::ofstream pose1("/home/lds/txt/aloam.txt", std::ios::app);
+	// pose1.setf(std::ios::scientific, std::ios::floatfield);
+	// pose1.precision(15);
+	
+	// Eigen::Matrix3d rotation_matrix;
+	// rotation_matrix = q_w_curr.toRotationMatrix();
+	// Eigen::Matrix<double, 4, 4> myaloam_pose;
+	// myaloam_pose.topLeftCorner(3,3) = rotation_matrix;
+	
+	// myaloam_pose(0,3) = t_w_curr.x();
+	// myaloam_pose(1,3) = t_w_curr.y();
+	// myaloam_pose(2,3) = t_w_curr.z();
+	
+	// Eigen::Matrix3d temp;
+	// temp = myaloam_pose.topLeftCorner(3,3);
+	// Eigen::Quaterniond quaternion(temp);
+	
+	// pose1 << odomAftMapped.header.stamp << " "
+	// 	<< myaloam_pose_f(0,3) << " "
+	// 	<< myaloam_pose_f(1,3) << " "
+	// 	<< myaloam_pose_f(2,3) << " "
+	// 	<< quaternion.x() << " "
+	// 	<< quaternion.y() << " "
+	// 	<< quaternion.z() << " "
+	// 	<< quaternion.w() << std::endl;
+	
+	// pose1.close();
+
 }
 
 void process()
