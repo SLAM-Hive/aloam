@@ -1,7 +1,7 @@
-### Build the A-LOAM by Dockerfile
+### Build the VINS-Mono by Dockerfile
 Firstly, git clone the algorithm Dockerfile repository to your computer, then:
 ```
-cd aloam
+cd vins-mono
 ./install.sh
 ```
 You can check whether the image is successfully built as follows:
@@ -10,5 +10,5 @@ docker images
 ```
 you can see:
 ```
-slam-hive-algorithm aloam [IMAGE ID] [CREATED] [SIZE]
+slam-hive-algorithm vins-mono [IMAGE ID] [CREATED] [SIZE]
 ```

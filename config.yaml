@@ -1,0 +1,9 @@
+slam-hive-algorithm: aloam
+slam-hive-dataset: kitti_2011_09_30_drive_0028_synced
+algorithm-parameters:
+dataset-parameters:
+algorithm-remap:
+  aloam_topic: /velodyne_points
+dataset-remap:
+  /velodyne_points: /points_raw
+

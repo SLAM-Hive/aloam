@@ -1,14 +1,11 @@
 <launch>
 
-
     
     <arg name="scan_line" default="64" />
     <arg name="mapping_skip_frame" default="1" />
     <arg name="minimum_range" default="5" />
     <arg name="mapping_line_resolution" default="0.4" />
     <arg name="mapping_plane_resolution" default="0.8" />
-
-    <arg name="aloam_topic" default="/points_raw" />
 
 
     <!---->
@@ -32,7 +29,7 @@
 
     <node pkg="aloam_velodyne" type="alaserMapping" name="alaserMapping" output="screen" />
 
-    <arg name="rviz" default="true" />
+    <arg name="rviz" default="false" />
     <group if="$(arg rviz)">
         <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find aloam_velodyne)/rviz_cfg/aloam_velodyne.rviz" />
     </group>

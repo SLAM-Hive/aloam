@@ -1,1 +1,1 @@
-docker build --tag slam-hive-algorithm:aloam -f ./Dockerfile .
+docker build --tag slam-hive-algorithm:a-loam -f ./Dockerfile .

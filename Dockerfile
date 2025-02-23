@@ -61,8 +61,13 @@ RUN catkin config \
     sed -i '/exec "$@"/i \
             source "/root/catkin_ws/devel/setup.bash"' /ros_entrypoint.sh
 
+#RUN cd $CATKIN_WS \
+#    && source /opt/ros/kinetic/setup.bash \
+#    && catkin_make \
+#    && source /root/catkin_ws/devel/setup.bash
+
 RUN apt-get update && apt-get install -y \
 	python3-pip \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* 
-RUN pip3 install pyyaml
+RUN pip3 install pyyaml==6.0
