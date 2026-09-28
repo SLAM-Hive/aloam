@@ -22,6 +22,8 @@ if __name__ == "__main__":
     folder_path = "/root/catkin_ws/pcd"  # 更改为你要监视的文件夹路径
     check_interval = 1  # 检查间隔，单位为秒
 
+    # mapping.py 在另一个后台进程里 mkdir，这里可能先启动；自己建好目录，否则会直接 FileNotFoundError 退出
+    os.makedirs(folder_path, exist_ok=True)
     while True:
         delete_files_except_largest(folder_path)
         time.sleep(check_interval)
